@@ -4,7 +4,7 @@ from datetime import datetime
 from src.ApiCheckGames import ApiCheckGames
 
 apiCheckIdGame = Blueprint('apiCheckIdGame', __name__)
-
+api = ApiCheckGames()
 
 @apiCheckIdGame.route('/', methods=['GET'])
 def index():
@@ -42,7 +42,7 @@ def check_id_game():
                 'server_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             })
 
-        api = ApiCheckGames()
+        
         if type_name not in ApiCheckGames.__dict__:
             return jsonify({
                 'status': False,
