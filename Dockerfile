@@ -7,11 +7,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Set PYTHONPATH
-ENV PYTHONPATH=/app/example_web_apps
-
+# Flask butuh WSGI, bukan ASGI
 EXPOSE 8000
 
-# Jalankan Flask pakai Gunicorn (WSGI)
-CMD ["gunicorn", "example_web_apps.server:app", "-b", "0.0.0.0:8000"]
+ENV PYTHONPATH=/app/example_web_apps
 
+CMD ["gunicorn", "example_web_apps.server:app", "-b", "0.0.0.0:8000"]
